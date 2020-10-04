@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class PlayerControl : MonoBehaviour
 {
@@ -15,12 +15,9 @@ public class PlayerControl : MonoBehaviour
 
     Dictionary<string, bool> avoidedTriggers;
 
-    int hours;
-    int minutes;
-    float seconds;
-    public float timeSpeed;
+   
 
-    public Text ClockText;
+    
     public GameObject NotesPanel; 
 
     // Start is called before the first frame update
@@ -31,10 +28,6 @@ public class PlayerControl : MonoBehaviour
         avoidedTriggers = new Dictionary<string, bool>();
 
         avoidedTriggers.Add("DormLights", false);
-
-        hours = 6;
-        minutes = 0;
-        seconds = 0;
 
         NotesPanel = GameObject.Find("NotesPanel");
 
@@ -69,22 +62,7 @@ public class PlayerControl : MonoBehaviour
         }
 
 
-        seconds += timeSpeed * Time.deltaTime;
-        if(seconds > 60)
-        {
-            minutes += 1;
-            if(minutes > 60)
-            {
-                hours += 1;
-                minutes = 0;
-            }
-            seconds = 0;
-        }
-
-        string clockHours = hours.ToString("00");
-        string clockMinutes = minutes.ToString("00");
-        
-        ClockText.text = clockHours + " : " + clockMinutes;
+       
         
 
     }
