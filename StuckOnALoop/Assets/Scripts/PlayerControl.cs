@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     public float timeSpeed;
 
     public Text ClockText;
+    public GameObject NotesPanel; 
 
     // Start is called before the first frame update
     void Start()
@@ -34,20 +35,36 @@ public class PlayerControl : MonoBehaviour
         hours = 6;
         minutes = 0;
         seconds = 0;
+
+        NotesPanel = GameObject.Find("NotesPanel");
+
+        NotesPanel.SetActive(false);
+
+        GetComponent<Notes>().LoadNotes();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Move();
-
-        if (Input.GetKey(KeyCode.E))
+        
+        if (GetComponent<Notes>().isNotesFocused() == false)
         {
+            Move();
+
+            if (Input.GetKeyDown(KeyCode.E))
+             {
             InteractableItem closest = GetClosestInteractable();
             if(closest != null)
             {
                 closest.Interact();
+            }
+             }
+
+       
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                NotesPanel.SetActive(!NotesPanel.activeSelf);
             }
         }
 

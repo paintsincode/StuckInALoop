@@ -18,7 +18,7 @@ public class DeathTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entered");
+      
         if(collision.gameObject == PlayerChar)
         {
             if (PlayerChar.GetComponent<PlayerControl>().HasAvoidedTrigger(avoidableTrigger) == false)
